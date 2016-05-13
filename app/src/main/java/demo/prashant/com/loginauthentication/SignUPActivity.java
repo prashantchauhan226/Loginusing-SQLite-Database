@@ -4,18 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 /**
  * Created by PRASHANT CHAUHAN on 12-May-16.
  */
-public class SignUPActivity extends AppCompatActivity {
+public class SignUPActivity extends AppCompatActivity implements  AdapterView.OnItemSelectedListener{
     EditText editTextUserName, editTextPassword, editTextConfirmPassword;
     Button btnCreateAccount;
     LoginDataBaseAdapter loginDataBaseAdapter;
-
+    String[] userType = {"Admin", "User",};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +26,12 @@ public class SignUPActivity extends AppCompatActivity {
         // get Instance of Database Adapter
         loginDataBaseAdapter=new LoginDataBaseAdapter(this);
         loginDataBaseAdapter=loginDataBaseAdapter.open();
+        // Get The Refference Of Spiner
+        Spinner spin = (Spinner) findViewById(R.id.spiner);
+
+        // Set OnClick Listener on spiner button
+        spin.setOnItemSelectedListener(this);
+
 
 // Get Refferences of Views
         editTextUserName=(EditText)findViewById(R.id.editTextUserName);
@@ -62,6 +71,12 @@ public class SignUPActivity extends AppCompatActivity {
                 }
             }
         });
+        //Creating the ArrayAdapter instance having the country list
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, userType);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //Setting the ArrayAdapter data on the Spinner
+        spin.setAdapter(aa);
     }
     @Override
     protected void onDestroy() {
@@ -69,5 +84,16 @@ public class SignUPActivity extends AppCompatActivity {
         super.onDestroy();
 
         loginDataBaseAdapter.close();
+    }
+
+    //Performing action onItemSelected and onNothing selected
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+
     }
 }
