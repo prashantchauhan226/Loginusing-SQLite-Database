@@ -14,18 +14,19 @@ import android.widget.Toast;
 /**
  * Created by PRASHANT CHAUHAN on 12-May-16.
  */
-public class SignUPActivity extends AppCompatActivity implements  AdapterView.OnItemSelectedListener{
+public class SignUPActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText editTextUserName, editTextPassword, editTextConfirmPassword;
     Button btnCreateAccount;
     LoginDataBaseAdapter loginDataBaseAdapter;
     String[] userType = {"Admin", "User",};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
         // get Instance of Database Adapter
-        loginDataBaseAdapter=new LoginDataBaseAdapter(this);
-        loginDataBaseAdapter=loginDataBaseAdapter.open();
+        loginDataBaseAdapter = new LoginDataBaseAdapter(this);
+        loginDataBaseAdapter = loginDataBaseAdapter.open();
         // Get The Refference Of Spiner
         Spinner spin = (Spinner) findViewById(R.id.spiner);
 
@@ -34,38 +35,34 @@ public class SignUPActivity extends AppCompatActivity implements  AdapterView.On
 
 
 // Get Refferences of Views
-        editTextUserName=(EditText)findViewById(R.id.editTextUserName);
-        editTextPassword=(EditText)findViewById(R.id.editTextPassword);
-        editTextConfirmPassword=(EditText)findViewById(R.id.editTextConfirmPassword);
+        editTextUserName = (EditText) findViewById(R.id.editTextUserName);
+        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
 
-        btnCreateAccount=(Button)findViewById(R.id.buttonCreateAccount);
+        btnCreateAccount = (Button) findViewById(R.id.buttonCreateAccount);
         btnCreateAccount.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
 // TODO Auto-generated method stub
 
-                String userName=editTextUserName.getText().toString();
-                String password=editTextPassword.getText().toString();
-                String confirmPassword=editTextConfirmPassword.getText().toString();
+                String userName = editTextUserName.getText().toString();
+                String password = editTextPassword.getText().toString();
+                String confirmPassword = editTextConfirmPassword.getText().toString();
 
 // check if any of the fields are vaccant
-                if(userName.equals("")||password.equals("")||confirmPassword.equals(""))
-                {
+                if (userName.equals("") || password.equals("") || confirmPassword.equals("")) {
                     Toast.makeText(getApplicationContext(), "Field Vaccant", Toast.LENGTH_LONG).show();
                     return;
                 }
 // check if both password matches
-                if(!password.equals(confirmPassword))
-                {
+                if (!password.equals(confirmPassword)) {
                     Toast.makeText(getApplicationContext(), "Password does not match", Toast.LENGTH_LONG).show();
                     return;
-                }
-                else
-                {
+                } else {
 
 // Save the Data in Database
                     loginDataBaseAdapter.insertEntry(userName, password);
-                    Intent homeintent = new Intent(SignUPActivity.this,MainActivity.class);
+                    Intent homeintent = new Intent(SignUPActivity.this, MainActivity.class);
                     startActivity(homeintent);
                     Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
                 }
@@ -78,6 +75,7 @@ public class SignUPActivity extends AppCompatActivity implements  AdapterView.On
         //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(aa);
     }
+
     @Override
     protected void onDestroy() {
 // TODO Auto-generated method stub
