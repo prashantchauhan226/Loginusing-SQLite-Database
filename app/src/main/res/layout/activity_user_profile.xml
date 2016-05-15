@@ -10,18 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="demo.prashant.com.loginauthentication.UserProfile">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="5dp">
-
-        <Button
-            android:id="@+id/btnSelectPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select Photo" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +22,21 @@
             android:id="@+id/ivImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/circle"
             android:src="@drawable/ic_launcher" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/btnSelectPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Photo" />
     </LinearLayout>
 
 </LinearLayout>
