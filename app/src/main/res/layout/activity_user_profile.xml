@@ -9,8 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="demo.prashant.com.loginauthentication.UserProfile">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User Profile" />
+        android:layout_height="wrap_content" />
 </RelativeLayout>
